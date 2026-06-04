@@ -110,7 +110,7 @@ export default function Hero({ onOpenPdfModal }: HeroProps) {
                   src={personalInfo.portraitUrl}
                   alt={personalInfo.name}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover grayscale contrast-[105%] hover:grayscale-0 transition-all duration-750 ease-out"
+                  className="w-full h-full object-cover hover:scale-102 transition-all duration-500 ease-out"
                 />
               </div>
 

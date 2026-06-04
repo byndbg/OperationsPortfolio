@@ -1,9 +1,18 @@
+import portraitImg from "./assets/images/profile_portrait_1780379275743.png";
+import heartwoodImg from "./assets/images/regenerated_image_1780558280146.jpg";
+import viaImg from "./assets/images/regenerated_image_1780558282227.jpg";
+import cmrtaImg from "./assets/images/city_transit_bus_1780557413492.png";
+import campusElectricImg from "./assets/images/electric_bus_charging_1780557429910.png";
+import passengerRailImg from "./assets/images/passenger_train_map_1780557449015.png";
+import crmAutomationImg from "./assets/images/crm_automation_1780557466462.png";
+
 export interface Project {
   title: string;
   category: string;
   description: string;
   keyFeatures: string[];
   techStack: string[];
+  imageUrl?: string;
 }
 
 export interface Experience {
@@ -12,6 +21,7 @@ export interface Experience {
   duration: string;
   location?: string;
   bulletPoints: string[];
+  imageUrl?: string;
 }
 
 export interface Education {
@@ -62,7 +72,7 @@ export const portfolioData: PortfolioData = {
     phone: "(803) 760-9872",
     location: "Columbia, SC",
     linkedin: "https://www.linkedin.com/in/blake-gibbons/",
-    portraitUrl: "/src/assets/images/profile_portrait_1780379275743.png"
+    portraitUrl: portraitImg
   },
   experience: [
     {
@@ -70,6 +80,7 @@ export const portfolioData: PortfolioData = {
       company: "Heartwood Furnished Homes",
       duration: "Sep 2024 – Jun 2025",
       location: "Columbia, SC",
+      imageUrl: heartwoodImg,
       bulletPoints: [
         "Orchestrated weekly production of ~345 custom guest amenity bags, consistently exceeding forecasted demand coordinates to ensure 100% turn-key property readiness.",
         "Slashed bulk supply procurement and storage costs by 66% through improved vendor handling and creative repurposing of surplus high-end linens.",
@@ -82,6 +93,7 @@ export const portfolioData: PortfolioData = {
       company: "Via Transportation",
       duration: "May 2023 – Jun 2024",
       location: "Remote / New York, NY",
+      imageUrl: viaImg,
       bulletPoints: [
         "Generated $26M+ in qualified sales opportunities by launching targeted account campaigns targeting municipality nodes across the US and Canada.",
         "Sourced high-ticket turnkey and SaaS microtransit deployments by matching regional mobility pain points with tailored service models.",
@@ -93,6 +105,7 @@ export const portfolioData: PortfolioData = {
       company: "Central Midlands Regional Transit Authority",
       duration: "Dec 2020 – Apr 2023",
       location: "Columbia, SC",
+      imageUrl: cmrtaImg,
       bulletPoints: [
         "Analyzed system-wide OTP (On-Time Performance) and ridership spikes across bus routes and stops, drafting key data-driven reports for transit planners.",
         "Collaborated on operational, marketing, and public budget initiatives to scale the transit network and boost resident accessibility.",
@@ -133,6 +146,7 @@ export const portfolioData: PortfolioData = {
       title: "Campus Electrification & Sustainability Model",
       category: "Geospatial & Urban Planning",
       description: "An environmental capstone research project delivering comprehensive strategies for transitioning the University of South Carolina campus transit system into a clean, zero-emission electric fleet.",
+      imageUrl: campusElectricImg,
       keyFeatures: [
         "Mapped high-frequency shuttle corridors and simulated spatial charging network nodes.",
         "Calculated estimated carbon offsets and relative localized air-quality indexes.",
@@ -144,6 +158,7 @@ export const portfolioData: PortfolioData = {
       title: "Passenger Rail Revitalization Database Study",
       category: "Public Policy Analysis",
       description: "A research project linking historical Amtrak passenger trends against regional demographic datasets (age waves, political trends, urban clustering) to support public funding proposals.",
+      imageUrl: passengerRailImg,
       keyFeatures: [
         "Maintained data collection integrity compiling thousands of Amtrak station records.",
         "Conducted spatial analytics correlating high-density corridors with regional investment budgets.",
@@ -155,6 +170,7 @@ export const portfolioData: PortfolioData = {
       title: "CRM Automated Outreach Lead Pipeline",
       category: "Systems & Automations",
       description: "Designed and deployed custom scheduling pipelines and lead routers resulting in massive time-savings and pipeline transparency during corporate lead outreach.",
+      imageUrl: crmAutomationImg,
       keyFeatures: [
         "Formulated multi-step Zapier workflows driven by incoming webhook API calls.",
         "Wrote detailed MCP (Model Context Protocol) automation mappings to bridge communication gaps.",

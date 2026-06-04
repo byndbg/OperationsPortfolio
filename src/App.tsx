@@ -10,6 +10,7 @@ import ResumeDownload from "./components/ResumeDownload";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ResumeModal from "./components/ResumeModal";
+import BackToTop from "./components/BackToTop";
 import { portfolioData } from "./data";
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 
@@ -90,6 +91,9 @@ export default function App() {
           isOpen={isResumeOpen} 
           onClose={() => setIsResumeOpen(false)} 
         />
+
+        {/* Back to Top Floating button */}
+        <BackToTop />
       </div>
 
       {/* 2. Pristine Print-Only CSS Template (Hidden on web, perfectly styled for standard paper PDF export/print matching original resume format) */}

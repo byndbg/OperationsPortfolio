@@ -1,4 +1,5 @@
 import { GraduationCap, Award, Landmark, BookOpen } from "lucide-react";
+import { motion } from "motion/react";
 import { portfolioData } from "../data";
 
 export default function Education() {
@@ -13,7 +14,13 @@ export default function Education() {
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Heading */}
-        <div className="mb-14 space-y-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-14 space-y-3"
+        >
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1A1A1A]/40 dark:text-white/40">Academic Background</p>
           <h2 className="font-serif text-3xl sm:text-4xl italic font-normal text-[#1A1A1A] dark:text-white">
             Education & Fellowships
@@ -21,13 +28,17 @@ export default function Education() {
           <p className="max-w-xl text-xs text-[#1A1A1A]/60 dark:text-white/60 leading-relaxed">
             A background combining structural spatial science with intensive quantitative political science and public policy research.
           </p>
-        </div>
+        </motion.div>
 
         {/* Education Timeline / Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {education.map((edu, idx) => (
-            <div
+            <motion.div
               key={`${edu.institution}-${idx}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: Math.min(idx * 0.15, 0.4), ease: "easeOut" }}
               className="p-6 md:p-8 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex flex-col justify-between hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-all"
             >
               <div className="space-y-6">
@@ -89,7 +100,7 @@ export default function Education() {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

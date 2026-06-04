@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight, Folder, CheckCircle } from "lucide-react";
+import { motion } from "motion/react";
 import { portfolioData, Project } from "../data";
 
 export default function Projects() {
@@ -17,7 +18,13 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+        >
           <div className="space-y-3">
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1A1A1A]/40 dark:text-white/40">Case Studies</p>
             <h2 className="font-serif text-3xl sm:text-4xl italic font-normal text-[#1A1A1A] dark:text-white">
@@ -44,16 +51,33 @@ export default function Projects() {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
+          {filteredProjects.map((project, idx) => (
+            <motion.div
+              layout
               key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: Math.min(idx * 0.1, 0.4), ease: "easeOut" }}
               className="p-6 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex flex-col justify-between hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-all duration-300"
             >
               <div className="space-y-4">
+                {/* Visual Banner */}
+                {project.imageUrl && (
+                  <div className="w-full h-36 bg-[#E5E2D9] dark:bg-zinc-800 border border-[#1A1A1A]/10 dark:border-white/10 rounded-xl overflow-hidden mb-2 relative">
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover hover:scale-102 transition-transform duration-500 ease-out"
+                    />
+                  </div>
+                )}
+
                 {/* Header */}
                 <div className="flex justify-between items-start">
                   <div className="w-[36px] h-[36px] rounded-full bg-[#1A1A1A]/5 dark:bg-white/5 border border-[#1A1A1A]/10 dark:border-white/10 flex items-center justify-center text-[#1A1A1A] dark:text-white">
@@ -103,7 +127,7 @@ export default function Projects() {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 

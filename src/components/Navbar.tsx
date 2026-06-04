@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, Printer, FileText, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { portfolioData } from "../data";
 
 interface NavbarProps {
@@ -44,16 +45,72 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
         {/* Logo / Initials */}
         <a
           href="#"
-          className="flex items-center gap-2.5 font-display font-extrabold text-lg tracking-tighter uppercase text-[#1A1A1A] dark:text-white"
+          className="flex items-center gap-3 text-[#1A1A1A] dark:text-white hover:opacity-90 transition-opacity"
         >
-          <span className="w-8 h-8 rounded-full bg-[#1A1A1A] dark:bg-white text-white dark:text-[#121110] flex items-center justify-center font-serif italic text-sm shadow-sm">
-            {portfolioData.personalInfo.firstName[0]}
-            {portfolioData.personalInfo.lastName[0]}
-          </span>
-          <div className="flex flex-col text-left">
-            <span className="text-sm font-bold tracking-tighter leading-none">{portfolioData.personalInfo.name}</span>
-            <span className="text-[9px] uppercase tracking-widest text-[#1A1A1A]/50 dark:text-white/40 leading-none mt-1">Operations Portfolio</span>
+          {/* Custom SVG Slate Logo Card */}
+          <div className="w-10 h-10 select-none shrink-0 rounded-full overflow-hidden shadow-sm border border-[#1A1A1A]/5 dark:border-white/5 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 100 100"
+              className="w-full h-full"
+            >
+              {/* Base Circle with corporate slate/steel blue color */}
+              <circle cx="50" cy="50" r="47" fill="#405E7F" />
+              
+              {/* Inset White Circle border */}
+              <circle cx="50" cy="50" r="42" fill="none" stroke="white" strokeWidth="1.2" />
+              
+              {/* Large Serif Initials B & G */}
+              <text
+                x="37"
+                y="62"
+                fill="white"
+                fontSize="38"
+                fontFamily="'Playfair Display', Georgia, serif"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                B
+              </text>
+              <text
+                x="63"
+                y="62"
+                fill="white"
+                fontSize="38"
+                fontFamily="'Playfair Display', Georgia, serif"
+                fontWeight="bold"
+                textAnchor="middle"
+              >
+                G
+              </text>
+
+              {/* Masking block for Name Banner overlay */}
+              <rect x="22" y="44" width="56" height="12" fill="#405E7F" />
+              
+              {/* Divider lines */}
+              <line x1="24" y1="44" x2="76" y2="44" stroke="white" strokeWidth="0.8" opacity="0.9" />
+              <line x1="24" y1="56" x2="76" y2="56" stroke="white" strokeWidth="0.8" opacity="0.9" />
+
+              {/* Overlay Text "BLAKE GIBBONS" */}
+              <text
+                x="50"
+                y="50.8"
+                fill="white"
+                fontSize="5"
+                fontFamily="'Inter', system-ui, sans-serif"
+                fontWeight="800"
+                letterSpacing="0.4"
+                dominantBaseline="central"
+                textAnchor="middle"
+              >
+                BLAKE GIBBONS
+              </text>
+            </svg>
           </div>
+
+          <span className="font-display font-extrabold text-base md:text-lg tracking-tight text-[#1A1A1A] dark:text-white">
+            Blake Gibbons
+          </span>
         </a>
 
         {/* Desktop Menu */}
@@ -74,11 +131,22 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
             {/* Theme Toggle */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 text-[#1A1A1A]/60 dark:text-white/60 hover:text-[#1A1A1A] dark:hover:text-white transition-colors"
+              className="p-2 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 text-[#1A1A1A]/60 dark:text-white/60 hover:text-[#1A1A1A] dark:hover:text-white transition-colors relative h-8 w-8 flex items-center justify-center overflow-hidden"
               title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               aria-label="Toggle theme"
             >
-              {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={darkMode ? "dark" : "light"}
+                  initial={{ y: -15, opacity: 0, rotate: -90 }}
+                  animate={{ y: 0, opacity: 1, rotate: 0 }}
+                  exit={{ y: 15, opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="flex items-center justify-center absolute"
+                >
+                  {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+                </motion.div>
+              </AnimatePresence>
             </button>
 
             {/* Print Resume Option */}
@@ -107,10 +175,21 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
           {/* Theme Toggle Mobile */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 text-[#1A1A1A]/60 dark:text-white/60 transition-colors"
+            className="p-2 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 text-[#1A1A1A]/60 dark:text-white/60 transition-colors relative h-8 w-8 flex items-center justify-center overflow-hidden"
             aria-label="Toggle theme"
           >
-            {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={darkMode ? "dark" : "light"}
+                initial={{ y: -15, opacity: 0, rotate: -90 }}
+                animate={{ y: 0, opacity: 1, rotate: 0 }}
+                exit={{ y: 15, opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="flex items-center justify-center absolute"
+              >
+                {darkMode ? <Sun size={17} /> : <Moon size={17} />}
+              </motion.div>
+            </AnimatePresence>
           </button>
 
           {/* Hamburger Menu Toggle */}
