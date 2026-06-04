@@ -79,17 +79,19 @@ export default function Hero({ onOpenPdfModal }: HeroProps) {
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 text-[11px] font-bold uppercase tracking-widest text-[#F9F8F6] bg-[#1A1A1A] dark:bg-[#F3F2F0] dark:text-[#121110] rounded-full hover:opacity-90 shadow-md transition-all hover:scale-[1.01] active:scale-[0.99]"
               >
-                <span>Hire Blake</span>
+                <span>Let's connect</span>
                 <ArrowUpRight size={14} />
               </a>
 
-              <button
-                onClick={onOpenPdfModal}
+              <a
+                href="https://cal.com/blake-gibbons"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-[11px] font-bold uppercase tracking-widest text-[#1A1A1A] dark:text-[#F3F2F0] bg-transparent border border-[#1A1A1A]/20 dark:border-white/20 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 transition-all"
               >
                 <FileText size={14} className="text-[#1A1A1A]/45 dark:text-white/45" />
-                <span>View Highlights Summary</span>
-              </button>
+                <span>Book time on my calendar</span>
+              </a>
             </motion.div>
           </div>
 
@@ -112,19 +114,6 @@ export default function Hero({ onOpenPdfModal }: HeroProps) {
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover hover:scale-102 transition-all duration-500 ease-out"
                 />
-              </div>
-
-              {/* Float Contact Card */}
-              <div className="absolute -bottom-3 -right-3 z-20 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 p-3.5 rounded-xl shadow-lg flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#1A1A1A]/5 dark:bg-white/5 flex items-center justify-center text-[#1A1A1A] dark:text-[#F3F2F0]">
-                  <Mail size={14} />
-                </div>
-                <div>
-                  <p className="text-[9px] font-bold text-[#1A1A1A]/40 dark:text-white/40 uppercase tracking-widest leading-none mb-1">Email Address</p>
-                  <a href={`mailto:${personalInfo.email}`} className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] hover:underline leading-none block">
-                    {personalInfo.email}
-                  </a>
-                </div>
               </div>
             </motion.div>
           </div>

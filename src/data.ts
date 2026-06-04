@@ -6,6 +6,12 @@ import campusElectricImg from "./assets/images/electric_bus_charging_17805574299
 import passengerRailImg from "./assets/images/passenger_train_map_1780557449015.png";
 import crmAutomationImg from "./assets/images/crm_automation_1780557466462.png";
 
+import pressLgbtqImg from "./assets/images/lgbtq_history_press_1780610970515.png";
+import pressGradImg from "./assets/images/uofsc_grad_press_1780610982993.png";
+import pressCommunityImg from "./assets/images/regenerated_image_1780611570768.jpg";
+import pressSafetyImg from "./assets/images/campus_safety_press_1780611005314.png";
+import pressFellowshipImg from "./assets/images/ppia_fellow_press_1780611016970.png";
+
 export interface Project {
   title: string;
   category: string;
@@ -13,6 +19,15 @@ export interface Project {
   keyFeatures: string[];
   techStack: string[];
   imageUrl?: string;
+}
+
+export interface PressArticle {
+  title: string;
+  source: string;
+  date: string;
+  summary: string;
+  url: string;
+  imageUrl: string;
 }
 
 export interface Experience {
@@ -58,6 +73,7 @@ export interface PortfolioData {
   education: Education[];
   projects: Project[];
   skills: SkillCategory[];
+  press: PressArticle[];
 }
 
 export const portfolioData: PortfolioData = {
@@ -195,6 +211,48 @@ export const portfolioData: PortfolioData = {
     {
       categoryName: "Tools & Platforms",
       skills: ["Google Workspace Suite", "Microsoft Office Excel Pro", "Canva Graphics", "Hootsuite Management", "Apple iWork Platforms", "Social Copywriting & Analytics"]
+    }
+  ],
+  press: [
+    {
+      title: "Columbia's deep-rooted, untold LGBTQ history",
+      source: "WLTX-TV News",
+      date: "May 2023",
+      summary: "Features Blake Gibbons discussing the preservation of LGBTQ archives and capturing oral histories to chronicle the South Carolina region's community legacy.",
+      url: "https://www.wltx.com/article/news/local/columbia-sc-deep-rooted-untold-lgbtq-history/101-f7eaccdd-6895-463d-9b5f-415b69b3c9ed",
+      imageUrl: pressLgbtqImg
+    },
+    {
+      title: "Outstanding Student Spotlight: Class of 2023",
+      source: "University of South Carolina",
+      date: "April 2023",
+      summary: "Profiles Blake Gibbons as a leading graduate, highlighting his dual degree in Geography and Political Science, leadership executive accolades, and public policy ambitions.",
+      url: "https://sc.edu/uofsc/posts/2023/04/class-of-2023.php",
+      imageUrl: pressGradImg
+    },
+    {
+      title: "Student organizes film screening to spark race relations dialogue",
+      source: "WIS-TV News",
+      date: "January 2019",
+      summary: "Highlighting Blake's early civic leadership in organizing student film screenings and moderating open peer discussions centered around raising public race relations awareness.",
+      url: "https://www.wistv.com/2019/01/26/student-organizes-screening-movie-that-aims-start-conversation-race-relations/",
+      imageUrl: pressCommunityImg
+    },
+    {
+      title: "UofSC police and student government audit campus safety walks",
+      source: "WACH FOX News",
+      date: "November 2021",
+      summary: "Reports on student representative Blake Gibbons collaborating directly with campus safety officers on active inspection walks to improve nighttime walkway lighting and security response nodes.",
+      url: "https://wach.com/news/local/usc-police-and-students-walk-the-campus-to-address-any-safety-concerns",
+      imageUrl: pressSafetyImg
+    },
+    {
+      title: "Standout student Blake Gibbons wins national PPIA Fellowship",
+      source: "UofSC National Fellowships News",
+      date: "April 2022",
+      summary: "Documents Blake Gibbons winning the selective, nationwide Public Policy & International Affairs fellowship at the Gerald R. Ford School of Public Policy, University of Michigan.",
+      url: "https://sc.edu/about/offices_and_divisions/fellowships_and_scholar_programs/news/national_fellowships_news/2022/blake_gibbons_wins_ppia.php",
+      imageUrl: pressFellowshipImg
     }
   ]
 };

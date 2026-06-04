@@ -28,6 +28,7 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
     { label: "Skills", href: "#skills" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
+    { label: "Press", href: "#press" },
     { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ];
@@ -45,10 +46,10 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
         {/* Logo / Initials */}
         <a
           href="#"
-          className="flex items-center gap-3 text-[#1A1A1A] dark:text-white hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2.5 text-[#1A1A1A] dark:text-white hover:opacity-90 transition-opacity"
         >
           {/* Custom SVG Slate Logo Card */}
-          <div className="w-10 h-10 select-none shrink-0 rounded-full overflow-hidden shadow-sm border border-[#1A1A1A]/5 dark:border-white/5 flex items-center justify-center">
+          <div className="w-9 h-9 select-none shrink-0 rounded-full overflow-hidden shadow-sm border border-[#1A1A1A]/5 dark:border-white/5 flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 100 100"
@@ -58,57 +59,25 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
               <circle cx="50" cy="50" r="47" fill="#405E7F" />
               
               {/* Inset White Circle border */}
-              <circle cx="50" cy="50" r="42" fill="none" stroke="white" strokeWidth="1.2" />
+              <circle cx="50" cy="50" r="41" fill="none" stroke="white" strokeWidth="1.8" />
               
-              {/* Large Serif Initials B & G */}
-              <text
-                x="37"
-                y="62"
-                fill="white"
-                fontSize="38"
-                fontFamily="'Playfair Display', Georgia, serif"
-                fontWeight="bold"
-                textAnchor="middle"
-              >
-                B
-              </text>
-              <text
-                x="63"
-                y="62"
-                fill="white"
-                fontSize="38"
-                fontFamily="'Playfair Display', Georgia, serif"
-                fontWeight="bold"
-                textAnchor="middle"
-              >
-                G
-              </text>
-
-              {/* Masking block for Name Banner overlay */}
-              <rect x="22" y="44" width="56" height="12" fill="#405E7F" />
-              
-              {/* Divider lines */}
-              <line x1="24" y1="44" x2="76" y2="44" stroke="white" strokeWidth="0.8" opacity="0.9" />
-              <line x1="24" y1="56" x2="76" y2="56" stroke="white" strokeWidth="0.8" opacity="0.9" />
-
-              {/* Overlay Text "BLAKE GIBBONS" */}
+              {/* High-Contrast elegant serif Monogram */}
               <text
                 x="50"
-                y="50.8"
+                y="61"
                 fill="white"
-                fontSize="5"
-                fontFamily="'Inter', system-ui, sans-serif"
-                fontWeight="800"
-                letterSpacing="0.4"
-                dominantBaseline="central"
+                fontSize="38"
+                fontFamily="'Playfair Display', Georgia, serif"
+                fontWeight="700"
+                letterSpacing="-2.5"
                 textAnchor="middle"
               >
-                BLAKE GIBBONS
+                BG
               </text>
             </svg>
           </div>
 
-          <span className="font-display font-extrabold text-base md:text-lg tracking-tight text-[#1A1A1A] dark:text-white">
+          <span className="font-display font-bold text-base tracking-tight text-[#1A1A1A] dark:text-white mt-0.5">
             Blake Gibbons
           </span>
         </a>

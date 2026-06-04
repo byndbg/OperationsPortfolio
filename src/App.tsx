@@ -5,6 +5,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
+import Press from "./components/Press";
 import Education from "./components/Education";
 import ResumeDownload from "./components/ResumeDownload";
 import Contact from "./components/Contact";
@@ -73,6 +74,9 @@ export default function App() {
 
         {/* Technical & Policy Case Studies */}
         <Projects />
+
+        {/* Featured Press and Media Coverage */}
+        <Press />
 
         {/* Educational Credentials & Honors */}
         <Education />
