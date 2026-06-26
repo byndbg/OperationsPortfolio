@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Linkedin, Send, Copy, Check, ExternalLink } from "lucide-react";
 import { portfolioData } from "../data";
+import Turnstile from "./Turnstile";
 
 export default function Contact() {
   const { personalInfo } = portfolioData;
@@ -9,6 +10,18 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  const isDevOrSandbox = typeof window !== "undefined" && (
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname.endsWith(".run.app") ||
+    window.location.hostname.includes("aistudio")
+  );
+
+  const turnstileSiteKey = isDevOrSandbox
+    ? "1x00000000000000000000AA" // Cloudflare Turnstile Dummy site key for development
+    : "0x4AAAAAADrlACHzl4cwuvqp"; // Production site key
 
   const handleCopyEmail = async () => {
     try {
@@ -28,6 +41,10 @@ export default function Contact() {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) {
       setErrorMsg("Please fill out all fields before sending.");
+      return;
+    }
+    if (!turnstileToken) {
+      setErrorMsg("Please complete the security challenge verification first.");
       return;
     }
     setErrorMsg("");
@@ -221,9 +238,33 @@ export default function Contact() {
                 />
               </div>
 
+              {/* Cloudflare Turnstile Verification Widget */}
+              <div className="py-2 space-y-1.5 text-center">
+                <Turnstile
+                  siteKey={turnstileSiteKey}
+                  onSuccess={(token) => {
+                    setTurnstileToken(token);
+                    setErrorMsg("");
+                  }}
+                  onError={() => {
+                    setTurnstileToken(null);
+                    setErrorMsg("Security check failed. Please refresh the page and try again.");
+                  }}
+                  onExpire={() => {
+                    setTurnstileToken(null);
+                    setErrorMsg("Security session expired. Please re-verify.");
+                  }}
+                />
+                {isDevOrSandbox && (
+                  <p className="text-[9px] text-[#1A1A1A]/40 dark:text-white/40 font-mono">
+                    💡 Running in Sandbox: Dynamic development mode enabled to bypass Cloudflare Turnstile domain validation. Production site key will be active on your live domain.
+                  </p>
+                )}
+              </div>
+
               <button
                 type="submit"
-                disabled={sending || sent}
+                disabled={sending || sent || !turnstileToken}
                 className="w-full py-3.5 bg-[#1A1A1A] dark:bg-[#F3F2F0] text-white dark:text-[#121110] rounded-full font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
               >
                 {sending ? (

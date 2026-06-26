@@ -36,7 +36,7 @@ export default function About() {
         <div className="mb-14 space-y-3">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1A1A1A]/40 dark:text-white/40">Executive Narrative</p>
           <h2 className="font-serif text-3xl sm:text-4xl italic font-normal text-[#1A1A1A] dark:text-white">
-            Who is Blake Dyson Gibbons?
+            Who is Blake?
           </h2>
         </div>
 
@@ -44,12 +44,12 @@ export default function About() {
           
           {/* Main Story (Cols 1-7) */}
           <div className="lg:col-span-7 space-y-6 text-[#1A1A1A]/80 dark:text-white/80">
-            <h3 className="font-serif italic text-xl font-normal text-[#1A1A1A] dark:text-white">
+            <h3 className="font-serif italic text-xl font-normal text-[#1A1A1A] dark:text-white text-center rounded-[1px]">
               The Intersection of Geospatial Science, Logistics, and Policy
             </h3>
             
             <p className="leading-relaxed">
-              I’m an operations and logistics specialist with a background rooted in <span className="font-serif italic font-bold">Geography and Political Science</span> from the University of South Carolina, with advanced public policy training from the Gerald Ford School of Public Policy at the University of Michigan. 
+              I’m an operations and logistics specialist with a background in <span className="font-sans font-normal not-italic text-[#1A1A1A] dark:text-white">Geography and Political Science</span> from the <a href="#edu-usc" className="font-serif italic font-bold text-[#405E7F] dark:text-[#9FB1C1] hover:underline hover:opacity-90 transition-opacity">University of South Carolina</a> in Columbia, SC, with advanced public policy training from world-renowned experts at the <a href="#edu-umich" className="font-serif italic font-bold text-[#405E7F] dark:text-[#9FB1C1] hover:underline hover:opacity-90 transition-opacity">Gerald R. Ford School of Public Policy</a> at the University of Michigan in Ann Arbor, MI. 
             </p>
 
             <p className="leading-relaxed">
@@ -57,11 +57,11 @@ export default function About() {
             </p>
 
             <p className="leading-relaxed">
-              Through my work in luxury residential property readiness (<span className="font-bold">Heartwood Furnished Homes</span>), on-demand municipal microtransit (<span className="font-bold">Via Transportation</span>), and public regional transit systems (<span className="font-bold">CMRTA</span>), I have built a track record of cutting costs, designing clean workflow automations, and presenting clear geospatial assessments to stakeholders.
+              Through my work in short-term rental property management (<a href="#exp-heartwood" className="font-bold text-[#405E7F] dark:text-[#9FB1C1] hover:underline hover:opacity-90 transition-opacity">Heartwood Furnished Homes</a>), on-demand microtransit (<a href="#exp-via" className="font-bold text-[#405E7F] dark:text-[#9FB1C1] hover:underline hover:opacity-90 transition-opacity">Via Transportation</a>), and public regional transit systems (<a href="#exp-cmrta" className="font-bold text-[#405E7F] dark:text-[#9FB1C1] hover:underline hover:opacity-90 transition-opacity">CMRTA</a>), I have a proven track record of cutting costs, efficient and reliable workflow automations, and presenting clear geospatial assessments to stakeholders.
             </p>
 
             <p className="leading-relaxed font-bold text-[#1A1A1A] dark:text-white">
-              My current priority is implementing robust, data-driven coordination pipelines. I love bringing alignment to fast-moving warehouse crews, municipal partners, and tech stacks to build resilient operational systems.
+              My goal has always been to leave tomorrow better than I found it, by bringing alignment to fast-moving warehouse crews, municipal partners, and modern operations systems.
             </p>
           </div>
 

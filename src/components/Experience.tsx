@@ -31,11 +31,16 @@ export default function Experience() {
           {experience.map((job, idx) => (
             <motion.div
               key={`${job.company}-${idx}`}
+              id={
+                job.company.includes("Heartwood") ? "exp-heartwood" :
+                job.company.includes("Via") ? "exp-via" :
+                job.company.includes("Central Midlands") || job.company.includes("CMRTA") ? "exp-cmrta" : undefined
+              }
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: Math.min(idx * 0.1, 0.4), ease: "easeOut" }}
-              className="relative pl-8 md:pl-10"
+              className="relative pl-8 md:pl-10 scroll-mt-24"
             >
               
               {/* Chronological Dot Indicator */}

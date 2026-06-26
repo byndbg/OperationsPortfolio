@@ -35,11 +35,15 @@ export default function Education() {
           {education.map((edu, idx) => (
             <motion.div
               key={`${edu.institution}-${idx}`}
+              id={
+                edu.institution.includes("South Carolina") ? "edu-usc" :
+                edu.institution.includes("Michigan") ? "edu-umich" : undefined
+              }
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: Math.min(idx * 0.15, 0.4), ease: "easeOut" }}
-              className="p-6 md:p-8 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex flex-col justify-between hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-all"
+              className="p-6 md:p-8 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex flex-col justify-between hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-all scroll-mt-24"
             >
               <div className="space-y-6">
                 

@@ -215,7 +215,7 @@ export const portfolioData: PortfolioData = {
   ],
   press: [
     {
-      title: "Columbia's deep-rooted, untold LGBTQ history",
+      title: "Columbia's deep, untold LGBTQ history",
       source: "WLTX-TV News",
       date: "May 2023",
       summary: "Features Blake Gibbons discussing the preservation of LGBTQ archives and capturing oral histories to chronicle the South Carolina region's community legacy.",
