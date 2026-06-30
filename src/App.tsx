@@ -12,6 +12,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ResumeModal from "./components/ResumeModal";
 import BackToTop from "./components/BackToTop";
+import Chatbot from "./components/Chatbot";
+import DiagnosticsPanel from "./components/DiagnosticsPanel";
+import SearchSystem from "./components/SearchSystem";
 import { portfolioData } from "./data";
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 
@@ -30,6 +33,19 @@ export default function App() {
   });
 
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Keyboard shortcut listener for Command Palette (Cmd/Ctrl + K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Sync mode with class on documentElement
   useEffect(() => {
@@ -58,6 +74,7 @@ export default function App() {
           darkMode={darkMode} 
           setDarkMode={setDarkMode} 
           onOpenPdfModal={() => setIsResumeOpen(true)} 
+          onOpenSearch={() => setIsSearchOpen(true)}
         />
 
         {/* Hero Landing */}
@@ -96,8 +113,20 @@ export default function App() {
           onClose={() => setIsResumeOpen(false)} 
         />
 
+        {/* Command Palette Index Search Overlay */}
+        <SearchSystem 
+          isOpen={isSearchOpen} 
+          onClose={() => setIsSearchOpen(false)} 
+        />
+
         {/* Back to Top Floating button */}
         <BackToTop />
+
+        {/* AI Chatbot Widget */}
+        <Chatbot />
+
+        {/* Startup & Connection Diagnostics Panel */}
+        <DiagnosticsPanel />
       </div>
 
       {/* 2. Pristine Print-Only CSS Template (Hidden on web, perfectly styled for standard paper PDF export/print matching original resume format) */}

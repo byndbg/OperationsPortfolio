@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon, Printer, FileText, ChevronRight } from "lucide-react";
+import { Menu, X, Sun, Moon, Printer, FileText, ChevronRight, Search } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { portfolioData } from "../data";
 
@@ -7,9 +7,10 @@ interface NavbarProps {
   darkMode: boolean;
   setDarkMode: (value: boolean) => void;
   onOpenPdfModal: () => void;
+  onOpenSearch: () => void;
 }
 
-export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: NavbarProps) {
+export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal, onOpenSearch }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -97,6 +98,16 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
           </div>
 
           <div className="flex items-center gap-3 border-l border-[#1A1A1A]/10 dark:border-white/10 pl-6">
+            {/* Index Search Button */}
+            <button
+              onClick={onOpenSearch}
+              className="p-2 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 text-[#1A1A1A]/60 dark:text-white/60 hover:text-[#1A1A1A] dark:hover:text-white transition-colors"
+              title="Search portfolio (Cmd+K)"
+              aria-label="Search portfolio"
+            >
+              <Search size={17} />
+            </button>
+
             {/* Theme Toggle */}
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -141,6 +152,16 @@ export default function Navbar({ darkMode, setDarkMode, onOpenPdfModal }: Navbar
 
         {/* Mobile Menu Actions */}
         <div className="flex items-center gap-1 md:hidden">
+          {/* Index Search Button Mobile */}
+          <button
+            onClick={onOpenSearch}
+            className="p-2.5 rounded-full hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 text-[#1A1A1A]/60 dark:text-white/60 transition-colors"
+            title="Search portfolio"
+            aria-label="Search portfolio"
+          >
+            <Search size={17} />
+          </button>
+
           {/* Theme Toggle Mobile */}
           <button
             onClick={() => setDarkMode(!darkMode)}

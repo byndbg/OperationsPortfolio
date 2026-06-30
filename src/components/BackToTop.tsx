@@ -40,7 +40,7 @@ export default function BackToTop() {
           transition={{ duration: 0.3, ease: "easeOut" }}
           whileHover={{ scale: 1.08, y: -2 }}
           whileTap={{ scale: 0.95 }}
-          className="fixed bottom-6 right-6 z-50 p-3.5 
+          className="fixed bottom-6 right-24 z-50 p-3.5 
                      bg-[#FFFFFF] dark:bg-[#1A1A1A] 
                      text-[#1A1A1A] dark:text-[#F3F2F0] 
                      border border-[#1A1A1A]/10 dark:border-white/10 
