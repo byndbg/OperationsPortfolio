@@ -13,7 +13,6 @@ import Footer from "./components/Footer";
 import ResumeModal from "./components/ResumeModal";
 import BackToTop from "./components/BackToTop";
 import Chatbot from "./components/Chatbot";
-import DiagnosticsPanel from "./components/DiagnosticsPanel";
 import SearchSystem from "./components/SearchSystem";
 import { portfolioData } from "./data";
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
@@ -125,8 +124,6 @@ export default function App() {
         {/* AI Chatbot Widget */}
         <Chatbot />
 
-        {/* Startup & Connection Diagnostics Panel */}
-        <DiagnosticsPanel />
       </div>
 
       {/* 2. Pristine Print-Only CSS Template (Hidden on web, perfectly styled for standard paper PDF export/print matching original resume format) */}

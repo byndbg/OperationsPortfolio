@@ -6,7 +6,8 @@ import Turnstile from "./Turnstile";
 export default function Contact() {
   const { personalInfo } = portfolioData;
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -23,13 +24,27 @@ export default function Contact() {
     ? "1x00000000000000000000AA" // Cloudflare Turnstile Dummy site key for development
     : "0x4AAAAAADrlACHzl4cwuvqp"; // Production site key
 
-  const handleCopyEmail = async () => {
+  const handleCopyEmail = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     try {
       await navigator.clipboard.writeText(personalInfo.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
     } catch (err) {
-      setErrorMsg("Could not copy automatically. Please select the email manualy.");
+      setErrorMsg("Could not copy automatically. Please select the email manually.");
+    }
+  };
+
+  const handleCopyPhone = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      await navigator.clipboard.writeText(personalInfo.phone);
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2000);
+    } catch (err) {
+      setErrorMsg("Could not copy automatically. Please select the phone number manually.");
     }
   };
 
@@ -70,12 +85,12 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-transparent relative border-t border-b border-[#1A1A1A]/10 dark:border-white/10 no-print">
+    <section id="contact" className="py-24 relative border-t border-b border-[#1A1A1A]/10 dark:border-white/10 bg-slate-50/10 dark:bg-zinc-950/10 no-print">
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Title */}
-        <div className="mb-14 space-y-3">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1A1A1A]/40 dark:text-white/40">Get In Touch</p>
+        <div className="mb-16 space-y-3">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">Get In Touch</p>
           <h2 className="font-serif text-3xl sm:text-4xl italic font-normal text-[#1A1A1A] dark:text-white">
             Connect With Blake
           </h2>
@@ -89,7 +104,7 @@ export default function Contact() {
           {/* Details Column (5 columns) */}
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-2">
-              <h3 className="font-serif italic text-xl font-normal text-[#1A1A1A] dark:text-white">
+              <h3 className="font-serif italic text-xl font-normal text-blue-950 dark:text-blue-300">
                 Contact Details
               </h3>
               <p className="text-xs text-[#1A1A1A]/70 dark:text-white/70">
@@ -101,51 +116,74 @@ export default function Contact() {
             <div className="space-y-4">
               
               {/* Copy Email Card */}
-              <div className="p-4 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl relative group flex items-center justify-between gap-4">
+              <div className="p-5 bg-white dark:bg-[#1A1F2C] border border-slate-200/50 dark:border-slate-800/80 rounded-2xl relative group flex items-center justify-between gap-4 shadow-xs hover:shadow-md transition-all duration-300 hover:border-blue-500/20 dark:hover:border-blue-500/20">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-[#1A1A1A]/5 dark:bg-white/5 border border-[#1A1A1A]/10 dark:border-white/10 text-[#1A1A1A] dark:text-white rounded-full shrink-0">
+                  <div className="p-2.5 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
                     <Mail size={15} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/40 dark:text-white/40">Email Address</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Email Address</p>
                     <a href={`mailto:${personalInfo.email}`} className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] hover:underline">
                       {personalInfo.email}
                     </a>
                   </div>
                 </div>
 
-                <button
-                  onClick={handleCopyEmail}
-                  className="p-2 bg-transparent hover:bg-[#1A1A1A]/5 dark:hover:bg-white/5 border border-[#1A1A1A]/10 dark:border-white/10 rounded-full text-[#1A1A1A]/50 dark:text-white/40 transition-all text-xs"
-                  title="Copy email to clipboard"
-                >
-                  {copied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
-                </button>
+                <div className="flex items-center gap-2 shrink-0">
+                  {copiedEmail && (
+                    <span className="text-[10px] font-bold text-emerald-650 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-lg border border-emerald-500/20 animate-pulse">
+                      Copied!
+                    </span>
+                  )}
+                  <button
+                    id="copy-email-btn"
+                    onClick={handleCopyEmail}
+                    className="p-2 bg-slate-50 dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-blue-950/40 border border-slate-200/80 dark:border-slate-800/80 rounded-full text-slate-500 dark:text-white/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-xs cursor-pointer"
+                    title="Copy email to clipboard"
+                  >
+                    {copiedEmail ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                  </button>
+                </div>
               </div>
 
               {/* Call Phone Card */}
-              <a
-                href={`tel:${personalInfo.phone.replace(/[^0-9]/g, "")}`}
-                className="p-4 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex items-center gap-4 hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-colors"
-              >
-                <div className="p-2.5 bg-[#1A1A1A]/5 dark:bg-white/5 border border-[#1A1A1A]/10 dark:border-white/10 text-[#1A1A1A] dark:text-white rounded-full shrink-0">
-                  <Phone size={15} />
+              <div className="p-5 bg-white dark:bg-[#1A1F2C] border border-slate-200/50 dark:border-slate-800/80 rounded-2xl relative group flex items-center justify-between gap-4 shadow-xs hover:shadow-md transition-all duration-300 hover:border-blue-500/20 dark:hover:border-blue-500/20">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
+                    <Phone size={15} />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Phone Coordinate</p>
+                    <a href={`tel:${personalInfo.phone.replace(/[^0-9]/g, "")}`} className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] hover:underline">
+                      {personalInfo.phone}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/40 dark:text-white/40">Phone Coordinate</p>
-                  <p className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] leading-relaxed">
-                    {personalInfo.phone}
-                  </p>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  {copiedPhone && (
+                    <span className="text-[10px] font-bold text-emerald-650 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-lg border border-emerald-500/20 animate-pulse">
+                      Copied!
+                    </span>
+                  )}
+                  <button
+                    id="copy-phone-btn"
+                    onClick={handleCopyPhone}
+                    className="p-2 bg-slate-50 dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-blue-950/40 border border-slate-200/80 dark:border-slate-800/80 rounded-full text-slate-500 dark:text-white/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all text-xs cursor-pointer"
+                    title="Copy phone number to clipboard"
+                  >
+                    {copiedPhone ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                  </button>
                 </div>
-              </a>
+              </div>
 
               {/* Location Card */}
-              <div className="p-4 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex items-center gap-4">
-                <div className="p-2.5 bg-[#1A1A1A]/5 dark:bg-white/5 border border-[#1A1A1A]/10 dark:border-white/10 text-[#1A1A1A] dark:text-white rounded-full shrink-0">
+              <div className="p-5 bg-white dark:bg-[#1A1F2C] border border-slate-200/50 dark:border-slate-800/80 rounded-2xl flex items-center gap-4 shadow-xs hover:shadow-md transition-all duration-300 hover:border-blue-500/20 dark:hover:border-blue-500/20">
+                <div className="p-2.5 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
                   <MapPin size={15} />
                 </div>
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/40 dark:text-white/40">Location Base</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Location Base</p>
                   <p className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] leading-relaxed">
                     {personalInfo.location}
                   </p>
@@ -157,20 +195,20 @@ export default function Contact() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl flex items-center justify-between gap-4 hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-all group"
+                className="p-5 bg-white dark:bg-[#1A1F2C] border border-slate-200/50 dark:border-slate-800/80 rounded-2xl flex items-center justify-between gap-4 shadow-xs hover:shadow-md transition-all duration-300 hover:border-blue-500/25 dark:hover:border-blue-500/20 group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2.5 bg-[#1A1A1A]/5 dark:bg-white/5 border border-[#1A1A1A]/10 dark:border-white/10 text-[#1A1A1A] dark:text-white rounded-full shrink-0">
+                  <div className="p-2.5 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
                     <Linkedin size={15} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/40 dark:text-white/40">LinkedIn Networking</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">LinkedIn Networking</p>
                     <p className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] leading-relaxed">
                       @blake-gibbons
                     </p>
                   </div>
                 </div>
-                <ExternalLink size={14} className="text-[#1A1A1A]/50 dark:text-white/40 group-hover:text-[#1A1A1A] dark:group-hover:text-white transition-colors mr-1" />
+                <ExternalLink size={14} className="text-[#1A1A1A]/50 dark:text-white/40 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mr-1" />
               </a>
 
             </div>
@@ -178,13 +216,13 @@ export default function Contact() {
 
           {/* Form Column (7 columns) */}
           <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="p-6 md:p-8 bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-2xl space-y-5">
-              <h3 className="font-serif italic text-lg font-normal text-[#1A1A1A] dark:text-white">
-                Send an Direct Message
+            <form onSubmit={handleSubmit} className="p-6 md:p-8 bg-white dark:bg-[#1A1F2C] border-y border-r border-l-4 border-slate-200/50 dark:border-slate-800/80 border-l-blue-600 dark:border-l-blue-500 rounded-r-2xl rounded-l-md shadow-xs space-y-6">
+              <h3 className="font-serif italic text-lg font-normal text-blue-950 dark:text-blue-300">
+                Send a Direct Message
               </h3>
 
               {errorMsg && (
-                <div className="p-3.5 bg-red-500/10 border border-red-500/20 text-red-650 dark:text-red-400 rounded-xl text-xs font-semibold">
+                <div className="p-3.5 bg-red-500/10 border border-red-500/20 text-red-650 dark:text-red-400 rounded-xl text-xs font-semibold animate-shake">
                   {errorMsg}
                 </div>
               )}
@@ -195,9 +233,9 @@ export default function Contact() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label htmlFor="name-input" className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/50 dark:text-white/40 select-none">Your Name</label>
+                  <label htmlFor="name-input" className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 select-none">Your Name</label>
                   <input
                     id="name-input"
                     type="text"
@@ -206,11 +244,11 @@ export default function Contact() {
                     onChange={handleInputChange}
                     placeholder="Enter full name"
                     disabled={sending || sent}
-                    className="w-full px-4 py-3 text-xs bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-xl text-[#1A1A1A] dark:text-white placeholder-[#1A1A1A]/40 dark:placeholder-white/30 focus:outline-none focus:border-[#1A1A1A]/30 dark:focus:border-white/30 disabled:opacity-50"
+                    className="w-full px-4 py-3 text-xs bg-slate-50/50 dark:bg-zinc-900 border border-slate-200/60 dark:border-slate-800 rounded-xl text-[#1A1A1A] dark:text-white placeholder-[#1A1A1A]/40 dark:placeholder-white/30 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 disabled:opacity-50 transition-all duration-200"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor="email-input" className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/50 dark:text-white/40 select-none">Your Email Address</label>
+                  <label htmlFor="email-input" className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 select-none">Your Email Address</label>
                   <input
                     id="email-input"
                     type="email"
@@ -219,13 +257,13 @@ export default function Contact() {
                     onChange={handleInputChange}
                     placeholder="name@company.com"
                     disabled={sending || sent}
-                    className="w-full px-4 py-3 text-xs bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-xl text-[#1A1A1A] dark:text-white placeholder-[#1A1A1A]/40 dark:placeholder-white/30 focus:outline-none focus:border-[#1A1A1A]/30 dark:focus:border-white/30 disabled:opacity-50"
+                    className="w-full px-4 py-3 text-xs bg-slate-50/50 dark:bg-zinc-900 border border-slate-200/60 dark:border-slate-800 rounded-xl text-[#1A1A1A] dark:text-white placeholder-[#1A1A1A]/40 dark:placeholder-white/30 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 disabled:opacity-50 transition-all duration-200"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label htmlFor="msg-input" className="text-[9px] font-bold uppercase tracking-widest text-[#1A1A1A]/50 dark:text-white/40 select-none">Message Body</label>
+                <label htmlFor="msg-input" className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 select-none">Message Body</label>
                 <textarea
                   id="msg-input"
                   name="message"
@@ -234,7 +272,7 @@ export default function Contact() {
                   rows={5}
                   placeholder="Describe your project, role opportunity, or question..."
                   disabled={sending || sent}
-                  className="w-full px-4 py-3 text-xs bg-[#F9F8F6] dark:bg-[#121110] border border-[#1A1A1A]/10 dark:border-white/10 rounded-xl text-[#1A1A1A] dark:text-white placeholder-[#1A1A1A]/40 dark:placeholder-white/30 focus:outline-none focus:border-[#1A1A1A]/30 dark:focus:border-white/30 resize-none disabled:opacity-50"
+                  className="w-full px-4 py-3 text-xs bg-slate-50/50 dark:bg-zinc-900 border border-slate-200/60 dark:border-slate-800 rounded-xl text-[#1A1A1A] dark:text-white placeholder-[#1A1A1A]/40 dark:placeholder-white/30 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 resize-none disabled:opacity-50 transition-all duration-200"
                 />
               </div>
 
@@ -256,7 +294,7 @@ export default function Contact() {
                   }}
                 />
                 {isDevOrSandbox && (
-                  <p className="text-[9px] text-[#1A1A1A]/40 dark:text-white/40 font-mono">
+                  <p className="text-[9px] text-[#1A1A1A]/40 dark:text-white/40 font-mono leading-relaxed mt-1">
                     💡 Running in Sandbox: Dynamic development mode enabled to bypass Cloudflare Turnstile domain validation. Production site key will be active on your live domain.
                   </p>
                 )}
@@ -265,7 +303,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={sending || sent || !turnstileToken}
-                className="w-full py-3.5 bg-[#1A1A1A] dark:bg-[#F3F2F0] text-white dark:text-[#121110] rounded-full font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:opacity-90 transition-all disabled:opacity-50 cursor-pointer"
+                className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 hover:opacity-95 text-white shadow-md shadow-blue-500/10 hover:shadow-lg rounded-full font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 cursor-pointer"
               >
                 {sending ? (
                   <span>Preparing Dispatch...</span>

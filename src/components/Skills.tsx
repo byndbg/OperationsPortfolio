@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sliders, Compass, Target, Settings, Check } from "lucide-react";
 import { portfolioData } from "../data";
@@ -106,9 +106,40 @@ const skillDetails: Record<string, SkillDetail> = {
   },
 };
 
-function SkillTag({ skill }: { skill: string; key?: string }) {
+const SkillTag: React.FC<{ skill: string; categoryName: string }> = ({ skill, categoryName }) => {
   const [isHovered, setIsHovered] = useState(false);
   const details = skillDetails[skill] || { proficiency: "Expert", application: "Proven professional competency." };
+
+  const getColorClasses = () => {
+    switch (categoryName) {
+      case "Operations & Logistics":
+        return {
+          tag: "bg-blue-50/50 hover:bg-blue-100/80 text-blue-800 border-blue-200/40 dark:bg-blue-950/20 dark:hover:bg-blue-950/45 dark:text-blue-300 dark:border-blue-900/30",
+          check: "text-blue-500",
+          focus: "focus:ring-blue-500/50"
+        };
+      case "GIS & Geospatial Analysis":
+        return {
+          tag: "bg-emerald-50/50 hover:bg-emerald-100/80 text-emerald-800 border-emerald-200/40 dark:bg-emerald-950/20 dark:hover:bg-emerald-950/45 dark:text-emerald-300 dark:border-emerald-900/30",
+          check: "text-emerald-500",
+          focus: "focus:ring-emerald-500/50"
+        };
+      case "CRM & Stakeholder Management":
+        return {
+          tag: "bg-violet-50/50 hover:bg-violet-100/80 text-violet-800 border-violet-200/40 dark:bg-violet-950/20 dark:hover:bg-violet-950/45 dark:text-violet-300 dark:border-violet-900/30",
+          check: "text-violet-500",
+          focus: "focus:ring-violet-500/50"
+        };
+      default: // Tools & Platforms
+        return {
+          tag: "bg-amber-50/50 hover:bg-amber-100/80 text-amber-800 border-amber-200/40 dark:bg-amber-950/20 dark:hover:bg-amber-950/45 dark:text-amber-300 dark:border-amber-900/30",
+          check: "text-amber-500",
+          focus: "focus:ring-amber-500/50"
+        };
+    }
+  };
+
+  const colors = getColorClasses();
 
   return (
     <div
@@ -119,10 +150,10 @@ function SkillTag({ skill }: { skill: string; key?: string }) {
       onBlur={() => setIsHovered(false)}
     >
       <div
-        className="group inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E5E2D9]/30 hover:bg-[#E5E2D9]/60 dark:bg-white/5 dark:hover:bg-white/10 text-[#1A1A1A]/80 dark:text-white/80 rounded-full border border-[#1A1A1A]/10 dark:border-white/10 hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-all duration-200 cursor-help select-none focus:outline-none focus:ring-1 focus:ring-[#1A1A1A]/40 dark:focus:ring-white/40"
+        className={`group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-200 cursor-help select-none focus:outline-none focus:ring-1 ${colors.tag} ${colors.focus}`}
         tabIndex={0}
       >
-        <Check size={11} className="text-[#1A1A1A]/40 group-hover:text-[#1A1A1A] dark:group-hover:text-white transition-colors" />
+        <Check size={11} className={`${colors.check} shrink-0`} />
         <span className="text-[10px] font-bold uppercase tracking-wider">{skill}</span>
       </div>
 
@@ -133,21 +164,21 @@ function SkillTag({ skill }: { skill: string; key?: string }) {
             animate={{ opacity: 1, scale: 1, y: 0, x: "-50%" }}
             exit={{ opacity: 0, scale: 0.95, y: 10, x: "-50%" }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute bottom-full left-1/2 mb-2.5 w-56 p-3 bg-[#1A1A1A] dark:bg-zinc-900 border border-white/10 text-white rounded-xl shadow-xl z-50 pointer-events-none"
+            className="absolute bottom-full left-1/2 mb-2.5 w-56 p-3.5 bg-zinc-950 border border-white/10 text-white rounded-xl shadow-xl z-50 pointer-events-none"
           >
             {/* Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-[#1A1A1A] dark:bg-zinc-900 border-r border-b border-white/10 rotate-45" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-zinc-950 border-r border-b border-white/10 rotate-45" />
             
             <div className="space-y-1 relative z-10 text-left">
               <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-1.5">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-[#E5E2D9] truncate max-w-[110px]" title={skill}>
+                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-200 truncate max-w-[110px]" title={skill}>
                   {skill}
                 </span>
-                <span className="px-1.5 py-0.5 bg-white/10 rounded text-[8px] font-bold uppercase tracking-wider text-[#E5E2D9] shrink-0">
+                <span className="px-1.5 py-0.5 bg-white/10 rounded text-[8px] font-bold uppercase tracking-wider text-slate-300 shrink-0">
                   {details.proficiency}
                 </span>
               </div>
-              <p className="text-[9px] text-white/80 leading-relaxed font-normal pt-1 break-words">
+              <p className="text-[10px] text-white/80 leading-relaxed font-normal pt-1.5 break-words">
                 {details.application}
               </p>
             </div>
@@ -161,26 +192,46 @@ function SkillTag({ skill }: { skill: string; key?: string }) {
 export default function Skills() {
   const { skills } = portfolioData;
 
-  const getCategoryIcon = (name: string) => {
+  const getCategoryTheme = (name: string) => {
     switch (name) {
       case "Operations & Logistics":
-        return <Sliders className="text-[#1A1A1A] dark:text-white" size={17} />;
+        return {
+          icon: <Sliders className="text-blue-600 dark:text-blue-400" size={17} />,
+          badgeBg: "bg-blue-100/60 dark:bg-blue-500/15 border border-blue-500/10",
+          titleColor: "text-blue-900 dark:text-blue-300",
+          borderHover: "hover:border-blue-500/30 dark:hover:border-blue-500/25 shadow-blue-500/5"
+        };
       case "GIS & Geospatial Analysis":
-        return <Compass className="text-[#1A1A1A] dark:text-white" size={17} />;
+        return {
+          icon: <Compass className="text-emerald-600 dark:text-emerald-400" size={17} />,
+          badgeBg: "bg-emerald-100/60 dark:bg-emerald-500/15 border border-emerald-500/10",
+          titleColor: "text-emerald-900 dark:text-emerald-300",
+          borderHover: "hover:border-emerald-500/30 dark:hover:border-emerald-500/25 shadow-emerald-500/5"
+        };
       case "CRM & Stakeholder Management":
-        return <Target className="text-[#1A1A1A] dark:text-white" size={17} />;
+        return {
+          icon: <Target className="text-violet-600 dark:text-violet-400" size={17} />,
+          badgeBg: "bg-violet-100/60 dark:bg-violet-500/15 border border-violet-500/10",
+          titleColor: "text-violet-900 dark:text-violet-300",
+          borderHover: "hover:border-violet-500/30 dark:hover:border-violet-500/25 shadow-violet-500/5"
+        };
       default:
-        return <Settings className="text-[#1A1A1A] dark:text-white" size={17} />;
+        return {
+          icon: <Settings className="text-amber-600 dark:text-amber-400" size={17} />,
+          badgeBg: "bg-amber-100/60 dark:bg-amber-500/15 border border-amber-500/10",
+          titleColor: "text-amber-900 dark:text-amber-300",
+          borderHover: "hover:border-amber-500/30 dark:hover:border-amber-500/25 shadow-amber-500/5"
+        };
     }
   };
 
   return (
-    <section id="skills" className="py-20 bg-transparent relative border-t border-b border-[#1A1A1A]/10 dark:border-white/10">
+    <section id="skills" className="py-24 relative border-t border-b border-[#1A1A1A]/10 dark:border-white/10 bg-white/40 dark:bg-zinc-900/10">
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Section Heading */}
-        <div className="mb-14 space-y-3">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#1A1A1A]/40 dark:text-white/40">Core Competencies</p>
+        <div className="mb-16 space-y-3">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">Core Competencies</p>
           <h2 className="font-serif text-3xl sm:text-4xl italic font-normal text-[#1A1A1A] dark:text-white">
             Professional Skillset & Platforms
           </h2>
@@ -191,33 +242,36 @@ export default function Skills() {
 
         {/* Skills Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {skills.map((category) => (
-            <div
-              key={category.categoryName}
-              className="p-6 bg-[#F9F8F6] dark:bg-[#121110] rounded-2xl border border-[#1A1A1A]/10 dark:border-white/10 flex flex-col justify-between hover:border-[#1A1A1A]/20 dark:hover:border-white/20 transition-colors duration-300"
-            >
-              <div className="space-y-4">
-                {/* Category Header */}
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-[#1A1A1A]/5 dark:bg-white/5 rounded-full border border-[#1A1A1A]/10 dark:border-white/10">
-                    {getCategoryIcon(category.categoryName)}
+          {skills.map((category) => {
+            const theme = getCategoryTheme(category.categoryName);
+            return (
+              <div
+                key={category.categoryName}
+                className={`p-7 bg-white dark:bg-[#1A1F2C] rounded-2xl border border-slate-200/50 dark:border-slate-800/80 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 ${theme.borderHover}`}
+              >
+                <div className="space-y-5">
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-full ${theme.badgeBg}`}>
+                      {theme.icon}
+                    </div>
+                    <h3 className={`font-serif text-[16px] italic font-normal ${theme.titleColor}`}>
+                      {category.categoryName}
+                    </h3>
                   </div>
-                  <h3 className="font-serif text-[15px] italic font-normal text-[#1A1A1A] dark:text-white">
-                    {category.categoryName}
-                  </h3>
-                </div>
 
-                <div className="h-[1px] bg-[#1A1A1A]/10 dark:bg-white/10 w-full" />
+                  <div className="h-[1px] bg-slate-100 dark:bg-slate-800/80 w-full" />
 
-                {/* Skill Tags List */}
-                <div className="flex flex-wrap gap-2 pt-1.5">
-                  {category.skills.map((skill) => (
-                    <SkillTag key={skill} skill={skill} />
-                  ))}
+                  {/* Skill Tags List */}
+                  <div className="flex flex-wrap gap-2.5 pt-1.5">
+                    {category.skills.map((skill) => (
+                      <SkillTag key={skill} skill={skill} categoryName={category.categoryName} />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>
