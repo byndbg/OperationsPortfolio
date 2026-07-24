@@ -22,7 +22,7 @@ export default function Experience() {
             Professional Experience
           </h2>
           <p className="max-w-xl text-xs text-[#1A1A1A]/60 dark:text-white/60 leading-relaxed">
-            Chronological log of full-time alignments and specialized internships optimizing public and private transit systems.
+            Professional background in warehouse operations, business development, and public transit management.
           </p>
         </motion.div>
 

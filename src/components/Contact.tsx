@@ -108,7 +108,7 @@ export default function Contact() {
                 Contact Details
               </h3>
               <p className="text-xs text-[#1A1A1A]/70 dark:text-white/70">
-                You can reach out directly via cell phone, email transmission, or networking hubs.
+                You can reach out directly via phone, email, or LinkedIn.
               </p>
             </div>
 
@@ -153,7 +153,7 @@ export default function Contact() {
                     <Phone size={15} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Phone Coordinate</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Phone Number</p>
                     <a href={`tel:${personalInfo.phone.replace(/[^0-9]/g, "")}`} className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] hover:underline">
                       {personalInfo.phone}
                     </a>
@@ -183,7 +183,7 @@ export default function Contact() {
                   <MapPin size={15} />
                 </div>
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Location Base</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">Location</p>
                   <p className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] leading-relaxed">
                     {personalInfo.location}
                   </p>
@@ -202,7 +202,7 @@ export default function Contact() {
                     <Linkedin size={15} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">LinkedIn Networking</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-blue-600/70 dark:text-blue-400/70">LinkedIn Profile</p>
                     <p className="text-xs font-bold text-[#1A1A1A] dark:text-[#F3F2F0] leading-relaxed">
                       @blake-gibbons
                     </p>
@@ -229,7 +229,7 @@ export default function Contact() {
 
               {sent && (
                 <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-650 dark:text-emerald-400 rounded-xl text-xs font-semibold">
-                  Thank you! Redirecting to email application client, one second...
+                  Thank you! Opening your email app...
                 </div>
               )}
 
@@ -306,11 +306,11 @@ export default function Contact() {
                 className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 hover:opacity-95 text-white shadow-md shadow-blue-500/10 hover:shadow-lg rounded-full font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50 cursor-pointer"
               >
                 {sending ? (
-                  <span>Preparing Dispatch...</span>
+                  <span>Sending Message...</span>
                 ) : (
                   <>
                     <Send size={13} />
-                    <span>Send Message via MailClient</span>
+                    <span>Send Message</span>
                   </>
                 )}
               </button>

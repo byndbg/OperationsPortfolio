@@ -85,6 +85,16 @@ ${JSON.stringify(portfolioDataText, null, 2)}
     res.json({ status: "ok" });
   });
 
+  // Robots & Sitemap explicit endpoints
+  app.get("/robots.txt", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "robots.txt"));
+  });
+
+  app.get("/sitemap.xml", (req, res) => {
+    res.type("text/xml");
+    res.sendFile(path.join(process.cwd(), "public", "sitemap.xml"));
+  });
+
   // Vite middleware for development vs static serve for production
   if (process.env.NODE_ENV !== "production") {
     console.log("Starting server in development mode...");

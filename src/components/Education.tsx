@@ -60,9 +60,20 @@ export default function Education() {
                       {edu.institution}
                     </p>
                   </div>
-                  <div className="p-2.5 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
-                    {getInstitutionIcon(edu.institution)}
-                  </div>
+                  {edu.logoUrl ? (
+                    <div className="p-2 bg-white dark:bg-white rounded-xl shrink-0 flex items-center justify-center border border-slate-200/80 shadow-2xs overflow-hidden">
+                      <img
+                        src={edu.logoUrl}
+                        alt={`${edu.institution} Logo`}
+                        referrerPolicy="no-referrer"
+                        className="h-10 w-auto max-w-[120px] object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="p-2.5 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full shrink-0">
+                      {getInstitutionIcon(edu.institution)}
+                    </div>
+                  )}
                 </div>
 
                 <div className="h-[1px] bg-slate-100 dark:bg-slate-800/80" />

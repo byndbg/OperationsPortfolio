@@ -7,9 +7,9 @@ export default function About() {
   const cardStats = [
     {
       id: "stat-sourcing",
-      label: "Supply Sourcing Slashed",
+      label: "Supply Cost Savings",
       val: "66%",
-      desc: "Reduced warehousing expenditures at Heartwood homes through strategic bulk procurement structures.",
+      desc: "Reduced warehousing and inventory costs through strategic bulk purchasing and vendor management.",
       icon: <TrendingDown className="text-emerald-600 dark:text-emerald-400" size={18} />,
       bgClass: "bg-emerald-50/30 hover:bg-emerald-50/60 dark:bg-emerald-950/10 dark:hover:bg-emerald-950/20 border-emerald-500/15 dark:border-emerald-500/10",
       iconBg: "bg-emerald-100/60 dark:bg-emerald-500/15",
@@ -17,9 +17,9 @@ export default function About() {
     },
     {
       id: "stat-opps",
-      label: "Qualified Sales Leads",
+      label: "Municipal Outreach Identified",
       val: "$26M+",
-      desc: "Identified and qualified municipal and transit bids for SaaS/turnkey logistics solutions across the US & Canada.",
+      desc: "Identified and qualified $26M+ in municipal microtransit service opportunities across North America.",
       icon: <Target className="text-blue-600 dark:text-blue-400" size={18} />,
       bgClass: "bg-blue-50/30 hover:bg-blue-50/60 dark:bg-blue-950/10 dark:hover:bg-blue-950/20 border-blue-500/15 dark:border-blue-500/10",
       iconBg: "bg-blue-100/60 dark:bg-blue-500/15",
@@ -27,9 +27,9 @@ export default function About() {
     },
     {
       id: "stat-transit",
-      label: "Transit GIS Spatial Analysis",
+      label: "Logistics & GIS Background",
       val: "5+ Years",
-      desc: "Background mapping out electric fleet conversions, stop frequencies, and demographics linkage models.",
+      desc: "Practical experience mapping transit networks, fleet routing, and spatial demographic data.",
       icon: <Compass className="text-indigo-600 dark:text-indigo-400" size={18} />,
       bgClass: "bg-indigo-50/30 hover:bg-indigo-50/60 dark:bg-indigo-950/10 dark:hover:bg-indigo-950/20 border-indigo-500/15 dark:border-indigo-500/10",
       iconBg: "bg-indigo-100/60 dark:bg-indigo-500/15",
@@ -43,7 +43,7 @@ export default function About() {
         
         {/* Section Title */}
         <div className="mb-16 space-y-3">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">Executive Narrative</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">Professional Background</p>
           <h2 className="font-serif text-3xl sm:text-4xl italic font-normal text-[#1A1A1A] dark:text-white">
             Who is Blake?
           </h2>

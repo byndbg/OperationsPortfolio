@@ -1,16 +1,17 @@
 import portraitImg from "./assets/images/profile_portrait_1780379275743.png";
 import heartwoodImg from "./assets/images/regenerated_image_1780558280146.jpg";
 import viaImg from "./assets/images/regenerated_image_1780558282227.jpg";
-import cmrtaImg from "./assets/images/city_transit_bus_1780557413492.png";
+import cmrtaImg from "./assets/images/regenerated_image_1784866577218.jpg";
 import campusElectricImg from "./assets/images/electric_bus_charging_1780557429910.png";
 import passengerRailImg from "./assets/images/passenger_train_map_1780557449015.png";
 import crmAutomationImg from "./assets/images/crm_automation_1780557466462.png";
 
 import pressLgbtqImg from "./assets/images/lgbtq_history_press_1780610970515.png";
-import pressGradImg from "./assets/images/uofsc_grad_press_1780610982993.png";
+import pressGradImg from "./assets/images/regenerated_image_1784866583097.jpg";
 import pressCommunityImg from "./assets/images/regenerated_image_1780611570768.jpg";
 import pressSafetyImg from "./assets/images/campus_safety_press_1780611005314.png";
-import pressFellowshipImg from "./assets/images/ppia_fellow_press_1780611016970.png";
+import pressFellowshipImg from "./assets/images/regenerated_image_1784866585827.jpg";
+import uscLogoImg from "./assets/images/usc_official_logo_v2_1784867016752.jpg";
 
 export interface Project {
   title: string;
@@ -43,6 +44,7 @@ export interface Education {
   degree: string;
   institution: string;
   duration: string;
+  logoUrl?: string;
   details?: string[];
   capstone?: {
     title: string;
@@ -82,8 +84,8 @@ export const portfolioData: PortfolioData = {
     firstName: "Blake",
     lastName: "Gibbons",
     title: "Operations & Logistics Coordinator",
-    tagline: "Bridging geography, public policy, and operational workflows to build efficient, scalable supply channels.",
-    summary: "Operations and coordination professional specializing in supply cost reduction, client-facing workflows, and day-to-day execution. Proven success in logistics optimization, scheduling automation, stakeholder correspondence, and geospatial analysis in fast-paced public transit and luxury real estate environments.",
+    tagline: "Operations and logistics professional connecting supply workflows, GIS analysis, and automation to make complex systems run cleaner.",
+    summary: "Dependable operations and coordination professional with hands-on experience in warehouse inventory management, fleet routing, customer service, and workflow automation. Skilled in GIS spatial analysis, scheduling, and multi-channel communication, with a proven track record of dependability, efficiency, and clear organization.",
     email: "bdg710@gmail.com",
     phone: "(803) 760-9872",
     location: "Columbia, SC",
@@ -92,16 +94,16 @@ export const portfolioData: PortfolioData = {
   },
   experience: [
     {
-      role: "Warehouse & Amenity Services Specialist",
+      role: "Warehouse & Operations Logistics Specialist",
       company: "Heartwood Furnished Homes",
       duration: "Sep 2024 – Jun 2025",
       location: "Columbia, SC",
       imageUrl: heartwoodImg,
       bulletPoints: [
-        "Orchestrated weekly production of ~345 custom guest amenity bags, consistently exceeding forecasted demand coordinates to ensure 100% turn-key property readiness.",
-        "Slashed bulk supply procurement and storage costs by 66% through improved vendor handling and creative repurposing of surplus high-end linens.",
-        "Managed daily transport routing of ~1,000 lbs of laundry assets and oversaw scheduled maintenance for a 10-vehicle fleet.",
-        "Spearheaded OSHA-compliant safety guidelines, updating critical site signage, security practices, and first-aid response stations."
+        "Coordinated weekly assembly and distribution of ~345 property amenity kits, ensuring 100% turnkey readiness across guest locations.",
+        "Slashed bulk supply procurement and storage costs by 66% through improved vendor handling and creative inventory organization.",
+        "Managed daily transport routing for ~1,000 lbs of laundry assets and oversaw scheduled maintenance for a 10-vehicle fleet.",
+        "Maintained OSHA-compliant site safety guidelines, updating safety signage, security practices, and first-aid response stations."
       ]
     },
     {
@@ -111,9 +113,9 @@ export const portfolioData: PortfolioData = {
       location: "Remote / New York, NY",
       imageUrl: viaImg,
       bulletPoints: [
-        "Generated $26M+ in qualified sales opportunities by launching targeted account campaigns targeting municipality nodes across the US and Canada.",
-        "Sourced high-ticket turnkey and SaaS microtransit deployments by matching regional mobility pain points with tailored service models.",
-        "Configured custom automation triggers (Zapier, CRM webhooks) and redesigned team lead tracking pipelines within Salesforce, increasing reach efficiency."
+        "Identified and qualified over $26M in municipal microtransit partnership opportunities through targeted account research across North America.",
+        "Connected regional municipalities and transit agencies with microtransit solutions tailored to local mobility needs.",
+        "Streamlined team lead tracking and follow-up pipelines in Salesforce using Zapier and CRM webhook automations."
       ]
     },
     {
@@ -123,9 +125,9 @@ export const portfolioData: PortfolioData = {
       location: "Columbia, SC",
       imageUrl: cmrtaImg,
       bulletPoints: [
-        "Analyzed system-wide OTP (On-Time Performance) and ridership spikes across bus routes and stops, drafting key data-driven reports for transit planners.",
-        "Collaborated on operational, marketing, and public budget initiatives to scale the transit network and boost resident accessibility.",
-        "Created modern, structured data collection templates and file organizing structures, reducing route audits processing times."
+        "Analyzed route on-time performance (OTP) and ridership trends to support transit planners with clear, actionable reports.",
+        "Assisted with operational projects, marketing initiatives, and public budget accessibility reports for regional bus networks.",
+        "Created organized data collection templates and file systems that streamlined route audit workflows."
       ]
     }
   ],
@@ -134,6 +136,7 @@ export const portfolioData: PortfolioData = {
       degree: "B.A. in Geography and Political Science",
       institution: "University of South Carolina",
       duration: "Aug 2019 – May 2023",
+      logoUrl: uscLogoImg,
       details: [
         "GPA: 3.7 / 4.0 — Cum Laude with Leadership Distinction",
         "Awards: Student Body President's Executive Meritorious Award, USC Outstanding Senior Award",
@@ -185,12 +188,12 @@ export const portfolioData: PortfolioData = {
     {
       title: "CRM Automated Outreach Lead Pipeline",
       category: "Systems & Automations",
-      description: "Designed and deployed custom scheduling pipelines and lead routers resulting in massive time-savings and pipeline transparency during corporate lead outreach.",
+      description: "Designed and deployed custom scheduling pipelines and lead routers resulting in time savings and pipeline transparency during regional lead outreach.",
       imageUrl: crmAutomationImg,
       keyFeatures: [
-        "Formulated multi-step Zapier workflows driven by incoming webhook API calls.",
-        "Wrote detailed MCP (Model Context Protocol) automation mappings to bridge communication gaps.",
-        "Established automated dashboard metrics to flag outbound opportunities and speed up follow-ups."
+        "Formulated multi-step Zapier workflows driven by incoming webhook API triggers.",
+        "Configured structured automation mappings to bridge system communication gaps.",
+        "Established automated dashboard metrics to track opportunities and speed up follow-ups."
       ],
       techStack: ["HubSpot CRM", "Salesforce", "Zapier Automations", "Webhooks & JSON"]
     }
@@ -198,19 +201,19 @@ export const portfolioData: PortfolioData = {
   skills: [
     {
       categoryName: "Operations & Logistics",
-      skills: ["Fleet Operations Tracking", "Inventory Bulk Sourcing", "Zapier Workflow Automation", "MCP Webhook Protocols", "OSHA Safety Guidelines", "Procurement & Auditing"]
+      skills: ["Fleet Maintenance Routing", "Inventory Bulk Sourcing", "Warehouse Stock Control", "OSHA Safety Standards", "Vendor Negotiations", "Procurement & Auditing"]
     },
     {
       categoryName: "GIS & Geospatial Analysis",
-      skills: ["ArcMap GIS", "ArcCloud Analytics", "Google Earth Pro Spatial Modelling", "Remix Transit Planning", "KML/KMZ File Formatting"]
+      skills: ["ArcMap GIS", "ArcGIS Online Analytics", "Google Earth Pro Spatial Mapping", "Remix Transit Planning", "Spatial Data Modeling"]
     },
     {
-      categoryName: "CRM & Stakeholder Management",
-      skills: ["Salesforce Admin", "HubSpot CRM Pipelines", "Monday.com Boards", "Corporate Outreach Campaigning", "Client Correspondence Scheduling"]
+      categoryName: "CRM & Administration",
+      skills: ["Salesforce Administration", "HubSpot CRM Pipelines", "Zapier Workflow Automations", "Scheduling & Dispatch", "Customer & Client Service"]
     },
     {
       categoryName: "Tools & Platforms",
-      skills: ["Google Workspace Suite", "Microsoft Office Excel Pro", "Canva Graphics", "Hootsuite Management", "Apple iWork Platforms", "Social Copywriting & Analytics"]
+      skills: ["Google Workspace Suite", "Microsoft Excel & Office", "Canva Design", "Multi-Line Phone Communication", "Data Entry & Organization"]
     }
   ],
   press: [
